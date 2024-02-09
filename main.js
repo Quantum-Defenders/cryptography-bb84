@@ -4,16 +4,6 @@ var rt2 = Math.sqrt(2);
 var countqubits = 0;
 var keysize = 0;
 
-// Prompt the user to enter the message
-var message = prompt("Enter the message:");
-
-// Convert the message into binary
-var bits = [];
-for (var i = 0; i < message.length; i++) {
-    var binaryChar = message.charCodeAt(i).toString(2);
-    bits.push(...binaryChar.padStart(8, '0'));
-}
-
 function qubit(x,y,basis){
   this.x=x;
   this.y=y;
@@ -103,13 +93,10 @@ function setup() {
   time.style('width', '500px');
 }
 function draw() {
-  if(countqubits < bits.length) {
-    if(frameCount%Math.floor(time.value())==0){
-      a.updateBasis();
-      q.push(new qubit(a.x,a.y,a.basis));
-    }
+  if(frameCount%Math.floor(time.value())==0){
+    a.updateBasis();
+    q.push(new qubit(a.x,a.y,a.basis));
   }
-
   background(0);
   a.renderBasis();
   b.renderBasis();
